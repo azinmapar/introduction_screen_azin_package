@@ -16,11 +16,11 @@ class IntroScreenOnBoarding extends StatefulWidget {
   final IconButton? topIconButton;
 
   /// Callback on Skip Button Pressed
-  final Function()? onTapSkipButton;
+  final Function()? onTapFinishedButton;
   const IntroScreenOnBoarding({
     Key? key,
     this.introductionList,
-    this.onTapSkipButton,
+    this.onTapFinishedButton,
     this.backgroudColor,
     this.foregroundColor,
     this.skipTextStyle = const TextStyle(fontSize: 20),
@@ -213,7 +213,7 @@ class _IntroScreenOnBoardingState extends State<IntroScreenOnBoarding> {
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.ease,
                         )
-                      : widget.onTapSkipButton!();
+                      : widget.onTapFinishedButton!();
                 },
                 icon: const Icon(
                   Pelaicons.right_arrow_2_light_outline,
@@ -262,10 +262,31 @@ class _IntroScreenOnBoardingState extends State<IntroScreenOnBoarding> {
               alignment: Alignment.topRight,
               child: Padding(
                 padding: const EdgeInsets.only(top: 20, right: 25),
-                child: TextButton(
-                  onPressed: widget.onTapSkipButton,
-                  child: Text('Skip', style: widget.skipTextStyle),
-                ),
+                child: _currentPage != widget.introductionList!.length - 1
+                    ? TextButton(
+                        onPressed: () {
+                          setState(() {
+                            _pageController.animateToPage(
+                              widget.introductionList!.length - 1,
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.ease,
+                            );
+                          });
+                        },
+                        child: Text('Skip', style: widget.skipTextStyle),
+                      )
+                    : Visibility(
+                        maintainSize: true,
+                        maintainAnimation: true,
+                        maintainState: true,
+                        visible: false,
+                        child: Container(
+                          color: Colors.red,
+                          child: TextButton(
+                              onPressed: () {},
+                              child: Text('Skip', style: widget.skipTextStyle)),
+                        ),
+                      ),
               ),
             )
           ],
