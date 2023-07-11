@@ -14,6 +14,8 @@ class IntroScreenOnBoarding extends StatefulWidget {
   final Color? foregroundColor;
   final TextStyle? skipTextStyle;
   final IconButton? topIconButton;
+  final String skipText;
+  final Color primaryColor;
 
   /// Callback on Skip Button Pressed
   final Function()? onTapFinishedButton;
@@ -25,6 +27,8 @@ class IntroScreenOnBoarding extends StatefulWidget {
     this.foregroundColor,
     this.skipTextStyle = const TextStyle(fontSize: 20),
     this.topIconButton,
+    this.skipText = 'Skip',
+    this.primaryColor = const Color(0xFF6768FF),
   }) : super(key: key);
 
   @override
@@ -66,7 +70,7 @@ class _IntroScreenOnBoardingState extends State<IntroScreenOnBoarding> {
                                 height: 48.0,
                                 width: 50.0,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFF6768FF),
+                                  color: widget.primaryColor,
                                   borderRadius: BorderRadius.circular(23.0),
                                 ),
                               ),
@@ -192,8 +196,7 @@ class _IntroScreenOnBoardingState extends State<IntroScreenOnBoarding> {
               height: 118,
               child: CircleProgressBar(
                 backgroundColor: Colors.white,
-                foregroundColor:
-                    widget.foregroundColor ?? const Color(0xFF6768FF),
+                foregroundColor: widget.foregroundColor ?? widget.primaryColor,
                 value: 0.15,
               ),
             ),
@@ -202,7 +205,7 @@ class _IntroScreenOnBoardingState extends State<IntroScreenOnBoarding> {
               width: 102,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: (widget.foregroundColor ?? const Color(0xFF6768FF)),
+                color: (widget.foregroundColor ?? widget.primaryColor),
               ),
               child: IconButton(
                 alignment: Alignment.topCenter,
@@ -233,12 +236,12 @@ class _IntroScreenOnBoardingState extends State<IntroScreenOnBoarding> {
                 child: AnimatedSmoothIndicator(
                   activeIndex: _currentPage,
                   count: widget.introductionList!.length,
-                  effect: const ColorTransitionEffect(
-                    activeDotColor: Color(0xFF6768FF),
+                  effect: ColorTransitionEffect(
+                    activeDotColor: widget.primaryColor,
                     dotWidth: 14.0,
                     dotHeight: 8.0,
                     radius: 5.0,
-                    dotColor: Color(0xFAD7D7D7),
+                    dotColor: const Color(0xFAD7D7D7),
                   ),
                 ),
                 // child: DotsIndicator(
@@ -273,7 +276,8 @@ class _IntroScreenOnBoardingState extends State<IntroScreenOnBoarding> {
                             );
                           });
                         },
-                        child: Text('Skip', style: widget.skipTextStyle),
+                        child:
+                            Text(widget.skipText, style: widget.skipTextStyle),
                       )
                     : Visibility(
                         maintainSize: true,
@@ -281,10 +285,10 @@ class _IntroScreenOnBoardingState extends State<IntroScreenOnBoarding> {
                         maintainState: true,
                         visible: false,
                         child: Container(
-                          color: Colors.red,
                           child: TextButton(
                               onPressed: () {},
-                              child: Text('Skip', style: widget.skipTextStyle)),
+                              child: Text(widget.skipText,
+                                  style: widget.skipTextStyle)),
                         ),
                       ),
               ),
