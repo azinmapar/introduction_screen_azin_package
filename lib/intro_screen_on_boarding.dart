@@ -197,7 +197,9 @@ class _IntroScreenOnBoardingState extends State<IntroScreenOnBoarding> {
               child: CircleProgressBar(
                 backgroundColor: Colors.white,
                 foregroundColor: widget.foregroundColor ?? widget.primaryColor,
-                value: 0.15,
+                value: ((_currentPage + 1) *
+                    1.0 /
+                    widget.introductionList!.length),
               ),
             ),
             Container(
@@ -229,38 +231,38 @@ class _IntroScreenOnBoardingState extends State<IntroScreenOnBoarding> {
         ),
         Stack(
           children: [
-            Align(
-              alignment: Alignment.center,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35),
-                child: AnimatedSmoothIndicator(
-                  activeIndex: _currentPage,
-                  count: widget.introductionList!.length,
-                  effect: ColorTransitionEffect(
-                    activeDotColor: widget.primaryColor,
-                    dotWidth: 14.0,
-                    dotHeight: 8.0,
-                    radius: 5.0,
-                    dotColor: const Color(0xFAD7D7D7),
-                  ),
-                ),
-                // child: DotsIndicator(
-                //   dotsCount: widget.introductionList!.length,
-                //   position: _currentPage,
-                //   decorator: DotsDecorator(
-                //     size: const Size(18.0, 9.0),
-                //     activeSize: const Size(18.0, 9.0),
-                //     activeColor: const Color(0xFF6768FF),
-                //     activeShape: RoundedRectangleBorder(
-                //       borderRadius: BorderRadius.circular(5.0),
-                //     ),
-                //     shape: RoundedRectangleBorder(
-                //       borderRadius: BorderRadius.circular(5.0),
-                //     ),
-                //   ),
-                // ),
-              ),
-            ),
+            // Align(
+            //   alignment: Alignment.center,
+            //   child: Padding(
+            //     padding: const EdgeInsets.only(top: 35),
+            //     child: AnimatedSmoothIndicator(
+            //       activeIndex: _currentPage,
+            //       count: widget.introductionList!.length,
+            //       effect: ColorTransitionEffect(
+            //         activeDotColor: widget.primaryColor,
+            //         dotWidth: 14.0,
+            //         dotHeight: 8.0,
+            //         radius: 5.0,
+            //         dotColor: const Color(0xFAD7D7D7),
+            //       ),
+            //     ),
+            //     // child: DotsIndicator(
+            //     //   dotsCount: widget.introductionList!.length,
+            //     //   position: _currentPage,
+            //     //   decorator: DotsDecorator(
+            //     //     size: const Size(18.0, 9.0),
+            //     //     activeSize: const Size(18.0, 9.0),
+            //     //     activeColor: const Color(0xFF6768FF),
+            //     //     activeShape: RoundedRectangleBorder(
+            //     //       borderRadius: BorderRadius.circular(5.0),
+            //     //     ),
+            //     //     shape: RoundedRectangleBorder(
+            //     //       borderRadius: BorderRadius.circular(5.0),
+            //     //     ),
+            //     //   ),
+            //     // ),
+            //   ),
+            // ),
             Align(
               alignment: Alignment.topRight,
               child: Padding(
@@ -284,12 +286,10 @@ class _IntroScreenOnBoardingState extends State<IntroScreenOnBoarding> {
                         maintainAnimation: true,
                         maintainState: true,
                         visible: false,
-                        child: Container(
-                          child: TextButton(
-                              onPressed: () {},
-                              child: Text(widget.skipText,
-                                  style: widget.skipTextStyle)),
-                        ),
+                        child: TextButton(
+                            onPressed: () {},
+                            child: Text(widget.skipText,
+                                style: widget.skipTextStyle)),
                       ),
               ),
             )
