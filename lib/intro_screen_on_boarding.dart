@@ -42,7 +42,7 @@ class _IntroScreenOnBoardingState extends State<IntroScreenOnBoarding> {
       child: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: Container(
-          color: widget.backgroudColor ?? Colors.white,
+          color: widget.backgroudColor ?? Theme.of(context).backgroundColor,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 40.0),
             child: Column(
@@ -56,15 +56,23 @@ class _IntroScreenOnBoardingState extends State<IntroScreenOnBoarding> {
                       AnimatedOpacity(
                         opacity: _currentPage == 0 ? 1.0 : 0.0,
                         duration: const Duration(milliseconds: 300),
-                        child: Container(
-                          alignment: Alignment.topRight,
-                          height: 40.0,
-                          width: 42.0,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF6768FF),
-                            borderRadius: BorderRadius.circular(23.0),
-                          ),
-                          child: widget.topIconButton,
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              bottom: 0.0,
+                              right: 0.0,
+                              child: Container(
+                                alignment: Alignment.topRight,
+                                height: 48.0,
+                                width: 50.0,
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFF6768FF),
+                                  borderRadius: BorderRadius.circular(23.0),
+                                ),
+                              ),
+                            ),
+                            widget.topIconButton!,
+                          ],
                         ),
                       ),
                     ],

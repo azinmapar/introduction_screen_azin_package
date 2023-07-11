@@ -33,37 +33,38 @@ class IntroductionState extends State<Introduction> {
       padding: const EdgeInsets.only(right: 40.0, left: 40.0),
       child: Column(
         //crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Center(
-            child: Image(
-              image: AssetImage(widget.imageUrl),
-              height: widget.imageHeight,
-              width: widget.imageWidth,
-            ),
-          ),
-          const SizedBox(
-            height: 20.0,
+          Image(
+            image: AssetImage(widget.imageUrl),
+            height: widget.imageHeight,
+            width: widget.imageWidth,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                widget.title,
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.clip,
-                style: widget.titleTextStyle,
+              Flexible(
+                child: Text(
+                  widget.title,
+                  maxLines: 1,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.clip,
+                  style: widget.titleTextStyle,
+                ),
               ),
             ],
           ),
           const SizedBox(
             height: 10.0,
           ),
-          Text(
-            widget.subTitle,
-            style: widget.subTitleTextStyle,
-            overflow: TextOverflow.clip,
-            textAlign: TextAlign.center,
+          Flexible(
+            child: Text(
+              widget.subTitle,
+              maxLines: 3,
+              style: widget.subTitleTextStyle,
+              overflow: TextOverflow.clip,
+              textAlign: TextAlign.center,
+            ),
           ),
         ],
       ),
