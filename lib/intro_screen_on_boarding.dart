@@ -195,7 +195,7 @@ class _IntroScreenOnBoardingState extends State<IntroScreenOnBoarding> {
               width: 120,
               height: 118,
               child: CircleProgressBar(
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 foregroundColor: widget.foregroundColor ?? widget.primaryColor,
                 value: ((_currentPage + 1) *
                     1.0 /
