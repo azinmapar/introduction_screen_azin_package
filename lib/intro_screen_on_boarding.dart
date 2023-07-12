@@ -13,13 +13,13 @@ class IntroScreenOnBoarding extends StatefulWidget {
   final Color? backgroudColor;
   final Color? foregroundColor;
   final TextStyle? skipTextStyle;
-  final IconButton? topIconButton;
+  var topIconButton;
   final String skipText;
   final Color primaryColor;
 
   /// Callback on Skip Button Pressed
   final Function()? onTapFinishedButton;
-  const IntroScreenOnBoarding({
+  IntroScreenOnBoarding({
     Key? key,
     this.introductionList,
     this.onTapFinishedButton,
@@ -215,9 +215,9 @@ class _IntroScreenOnBoardingState extends State<IntroScreenOnBoarding> {
                 onPressed: () {
                   _currentPage != widget.introductionList!.length - 1
                       ? _pageController.nextPage(
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.ease,
-                        )
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.ease,
+                  )
                       : widget.onTapFinishedButton!();
                 },
                 icon: const Icon(
@@ -269,28 +269,28 @@ class _IntroScreenOnBoardingState extends State<IntroScreenOnBoarding> {
                 padding: const EdgeInsets.only(top: 20, right: 25),
                 child: _currentPage != widget.introductionList!.length - 1
                     ? TextButton(
-                        onPressed: () {
-                          setState(() {
-                            _pageController.animateToPage(
-                              widget.introductionList!.length - 1,
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.ease,
-                            );
-                          });
-                        },
-                        child:
-                            Text(widget.skipText, style: widget.skipTextStyle),
-                      )
+                  onPressed: () {
+                    setState(() {
+                      _pageController.animateToPage(
+                        widget.introductionList!.length - 1,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.ease,
+                      );
+                    });
+                  },
+                  child:
+                  Text(widget.skipText, style: widget.skipTextStyle),
+                )
                     : Visibility(
-                        maintainSize: true,
-                        maintainAnimation: true,
-                        maintainState: true,
-                        visible: false,
-                        child: TextButton(
-                            onPressed: () {},
-                            child: Text(widget.skipText,
-                                style: widget.skipTextStyle)),
-                      ),
+                  maintainSize: true,
+                  maintainAnimation: true,
+                  maintainState: true,
+                  visible: false,
+                  child: TextButton(
+                      onPressed: () {},
+                      child: Text(widget.skipText,
+                          style: widget.skipTextStyle)),
+                ),
               ),
             )
           ],
