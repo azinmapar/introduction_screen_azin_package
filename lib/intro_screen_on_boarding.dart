@@ -208,6 +208,13 @@ class _IntroScreenOnBoardingState extends State<IntroScreenOnBoarding> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (widget.foregroundColor ?? widget.primaryColor),
+                boxShadow: [
+                  BoxShadow(
+                    color: widget.primaryColor.withOpacity(0.15),
+                    offset: Offset.zero,
+                    blurRadius: 32.0,
+                  ),
+                ],
               ),
               child: IconButton(
                 alignment: Alignment.topCenter,
@@ -215,9 +222,9 @@ class _IntroScreenOnBoardingState extends State<IntroScreenOnBoarding> {
                 onPressed: () {
                   _currentPage != widget.introductionList!.length - 1
                       ? _pageController.nextPage(
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.ease,
-                  )
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.ease,
+                        )
                       : widget.onTapFinishedButton!();
                 },
                 icon: const Icon(
@@ -269,28 +276,28 @@ class _IntroScreenOnBoardingState extends State<IntroScreenOnBoarding> {
                 padding: const EdgeInsets.only(top: 20, right: 25),
                 child: _currentPage != widget.introductionList!.length - 1
                     ? TextButton(
-                  onPressed: () {
-                    setState(() {
-                      _pageController.animateToPage(
-                        widget.introductionList!.length - 1,
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.ease,
-                      );
-                    });
-                  },
-                  child:
-                  Text(widget.skipText, style: widget.skipTextStyle),
-                )
+                        onPressed: () {
+                          setState(() {
+                            _pageController.animateToPage(
+                              widget.introductionList!.length - 1,
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.ease,
+                            );
+                          });
+                        },
+                        child:
+                            Text(widget.skipText, style: widget.skipTextStyle),
+                      )
                     : Visibility(
-                  maintainSize: true,
-                  maintainAnimation: true,
-                  maintainState: true,
-                  visible: false,
-                  child: TextButton(
-                      onPressed: () {},
-                      child: Text(widget.skipText,
-                          style: widget.skipTextStyle)),
-                ),
+                        maintainSize: true,
+                        maintainAnimation: true,
+                        maintainState: true,
+                        visible: false,
+                        child: TextButton(
+                            onPressed: () {},
+                            child: Text(widget.skipText,
+                                style: widget.skipTextStyle)),
+                      ),
               ),
             )
           ],
